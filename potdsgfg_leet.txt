@@ -1,0 +1,237 @@
+..count possible ways to construct buildings
+
+int TotalWays(int N)
+	{
+	    // Code here
+	    if(N==1)return 4;
+	    long long int a=1,b=2,c;
+	    for(int i=2;i<=N;i++){
+	        c=(a+b)%1000000007;
+	        a=b;
+	        b=c;
+	    }
+	    return (c*c)%1000000007;
+
+	}
+
+//find the element occuring once when ssall others are present thrice
+int singleElement(int a[] ,int n) {
+        // code here
+        int ans=0;
+        for(int i=0;i<32;i++)
+        {
+            int c=0;
+            for(int j=0;j<n;j++)
+            {
+                if((a[j]&(1<<i))<0)
+                {
+                    c++;
+                }
+            }
+            if(c%3!=0)
+            {
+                ans=ans|(1<<i);
+            }
+        }
+        return ans;
+    }
+
+
+// Online C++ compiler to run C++ program online
+//#include <iostream>
+//using namespace std;
+// int finddecimal(int n)
+// {
+//     for(int i=32;i>=0;i--)
+//     {
+//         int mask=(1<<i);
+//         if(n&mask>0){
+//             return 1;
+//         }
+//         else{
+//             return 0;
+//         }
+//     }
+// }
+//int main() {
+	//occurence of 1 in 3 occurences
+//    int n;
+//    cin>>n;
+//    int a[n];
+//    for(int i=0;i<n;i++)
+//    {
+//        cin>>a[i];
+//    }
+//    int ans=0;
+//    for(int i=0;i<32;i++)
+//    {
+//        int oncount=0;
+//        for(int j=0;j<n;j++)
+//        {
+//            if((a[j]&(1<<i))>0)
+//            {
+//                oncount++;
+//            }
+//        }
+//        if(oncount%3!=0)
+//        {
+//            ans=ans|(1<<i);
+//        }
+//    }
+//    cout<<ans<<endl;
+//    
+//}
+
+//bitwise and for finding the biwise and between the given range l ,r;
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    int b[n][32];
+    for(int i=0;i<n;i++)
+    {
+        for(int j=32;j>=0;j--)
+        {
+            int m=((1<<j)&a[i]);   //finding the set bit position by left shift--ie j bit is the set bit or not checks
+            if(m)
+            {
+                b[i][j]=1;
+            }
+            else
+            {
+                b[i][j]=0;
+            }
+        }
+    }
+    for(int i=1;i<n;i++)
+    {
+        for(int j=0;j<32;j++)
+        {
+            b[i][j]=b[i][j]+b[i-1][j];
+        }
+    }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<32;j++)
+        {
+            cout<<b[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+    int l,r;
+    cin>>l>>r;
+    int s=r-l+1,ans=0;
+    for(int j=0;j<32;j++)
+    {
+        if(l==0)
+        {
+            if(b[r][j]>=s)
+            {
+                ans=ans|(1<<j);
+                //pow(2,j);
+            }
+        }
+        else
+        {
+            if((b[r][j]-b[l-1][j])>=s)
+            {
+                ans=ans|(1<<j);
+            }
+        }
+    }
+    cout<<ans;
+}
+
+
+//leetcode potds
+Convert an Array into a 2d array with conditions
+ def findMatrix(self, nums: List[int]) -> List[List[int]]:
+        n=[]
+        d={}
+        for i in nums:
+            if i not in d:
+                d[i]=1
+            else:
+                d[i]+=1
+        q=[]
+        maxi=0
+        for i in d:
+            if(d[i]>maxi):
+                maxi=d[i]
+        for j in range(maxi):
+            q=[]
+            for i in d:
+                if(d[i]==0):
+                    continue
+                else:
+                    q.append(i)
+                    d[i]-=1
+            n.append(q)
+        return n
+
+
+//minimum number of operations to make array empty
+ def minOperations(self, nums: List[int]) -> int:
+        d={}
+        c=0
+        ans=0
+        for i in nums:
+            if i not in d:
+                d[i]=1
+            else:
+                d[i]+=1
+        for i in d:
+            if(d[i]%3==0):
+                ans+=(d[i]//3)
+            elif(d[i]==1):
+                return -1
+            else:
+                a1=(d[i]//3)+1
+                a2=(d[i]//2)
+                ans+=min(a1,a2)
+        return ans
+//longest increasing ssubsequence
+def lengthOfLIS(self, nums: List[int]) -> int:
+        l=[1 for i in range(len(nums))]
+        m=0
+        for i in range(len(nums)):
+            t=0
+            for j in range(i):
+                if nums[j]<nums[i]:
+                    if l[j]>t:
+                        t=l[j]
+            l[i]+=t
+            if l[i]>m:
+                m=l[i]
+        return m
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
