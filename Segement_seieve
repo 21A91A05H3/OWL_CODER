@@ -1,0 +1,44 @@
+/generatse seive
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+int N=1e6+1;
+vector<ll>Primes(N,1);
+void Generate_seieve()
+{
+	Primes[0]=0;
+	Primes[1]=0;
+	for(int i=2;i*i<=N;i++)
+	{
+		if(Primes[i]==1)
+		{
+			for(int j=i*i;j<=N;j++)
+			{
+				Primes[j]=0;
+			}
+		}
+	}
+}
+int main()
+{
+	Generate_seieve();
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n,c=0;
+		cin>>n;
+		for(int i=n;i>=0;i--)
+		{
+			if(Primes[i]==1)
+			{
+				if(Primes[i-2]==1)
+				{
+					c+=1;
+				}
+			}
+		}
+		cout<<c<<endl;
+	}
+	
+}
