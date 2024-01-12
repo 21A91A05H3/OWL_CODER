@@ -1,0 +1,20 @@
+//leetcode potd
+//Determine if String Halves Are Alike
+def halvesAreAlike(self, s: str) -> bool:
+        def count_vowels(string):
+            vowels='aeiouAEIOU'
+            return sum(1 for char in string if char in vowels)
+        s1=len(s)//2
+        a=s[:s1]
+        b=s[s1:]
+        count_a=count_vowels(a)
+        count_b=count_vowels(b)
+        return count_a==count_b
+//gfg potd
+//Reverse First K elements of Queue
+ def modifyQueue(self, q, k):
+        # code here
+        s=a[0:k]
+        s1=a[k:]
+        s.reverse()
+        return s+s1
