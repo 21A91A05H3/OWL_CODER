@@ -1,0 +1,49 @@
+//leetcode potd
+//insert delete getrand O(1)
+ set<int>s;
+    RandomizedSet() {
+        
+    }
+    
+    bool insert(int val) {
+        if(s.find(val)!=s.end())
+        {
+            return false;
+        }
+        s.insert(val);
+        return true;
+        
+    }
+    
+    bool remove(int val) {
+        if(s.find(val)==s.end())
+        {
+            return false;
+        }
+        s.erase(val);
+        return true;  
+    }
+    
+    int getRandom() {
+        int s1=rand()%s.size();
+        return *next(s.begin(),s1);
+    }
+//gfg potd
+//sequence of sequence
+int solve(int n,int m){
+        if(m<n){
+            return 0;
+        }
+        if(n==0)
+        {
+            return 1;
+        }
+        int t=solve(n-1,m/2);
+        int nt=solve(n,m-1);
+        return t+nt;
+    }
+    int numberSequence(int m, int n){
+        // code here
+        return solve(n,m);
+        
+    }
