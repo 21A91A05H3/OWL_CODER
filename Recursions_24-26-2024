@@ -1,0 +1,281 @@
+//factorial in recursion
+//#include<bits/stdc++.h>
+//using namespace std;
+//int Facy(int n)
+//{
+//	if(n==0)
+//	{
+//		return 1;
+//	}
+//	int small=Facy(n-1);
+//	return n*small;
+//}
+//int main()
+//{
+//	int n,i;
+//	cin>>n;
+//	cout<<Facy(n);
+//}
+
+
+//Fibanocci
+//#include<bits/stdc++.h>
+//using namespace std;
+//int fib(int n)
+//{
+//	if(n==0 || n==1)
+//	{
+//		return n;
+//	}
+//	return fib(n-1)+fib(n-2);
+//}
+//int main()
+//{
+//	int n;
+//	cin>>n;
+//	cout<<fib(n);
+//}
+
+
+//Array sorted
+//#include<bits/stdc++.h>
+//using namespace std;
+//bool sort(int *a,int n)
+//{
+//	if(n==0 || n==1)
+//	{
+//		return true;
+//	}
+//	bool small=sort(a+1,n-1);
+//	if(small) return true;
+//	else{
+//		return false;
+//	}
+//}
+//int main()
+//{
+//	int n;
+//	cin>>n;
+//	int a[n];
+//	for(int i=0;i<n;i++)
+//	{
+//		cin>>a[i];
+//	}
+//	cout<<sort(a,n)<<endl;
+//}
+
+
+//first ocurence
+//#include<bits/stdc++.h>
+//using namespace std;
+//int firsocu(int *a,int key,int n)
+//{
+//	if(n==0){
+//		return -1;
+//	}
+//	if(a[0]==key)
+//	{
+//		return 0;
+//	}
+//	int small=firsocu(a+1,key,n-1);
+//	if(small==-1)
+//	{
+//		return -1;
+//	}
+//	else{
+//		return small+1;
+//	}
+//}
+//int main()
+//{
+//	int n,key=1;
+//	cin>>n;;
+//	cin>>key;
+//	int a[n];
+//	for(int i=0;i<n;i++)
+//	{
+//		cin>>a[i];
+//	}
+//	cout<<firsocu(a,key,n);
+//}
+
+
+//last occurence
+//#include<bits/stdc++.h>
+//using namespace std;
+//int lastocu(int *a,int key,int n)
+//{
+//	if(n==0)
+//	{
+//		return -1;
+//	}
+//	int small=lastocu(a+1,key,n-1);
+//	if(small==-1)
+//	{
+//		if(a[0]==key)
+//		{
+//			return 0;
+//		}
+//		else
+//		{
+//			return -1;
+//		}
+//	}
+//	else
+//	{
+//		return small+1;
+//	}
+//}
+//int main()
+//{
+//	int n,key=1;
+//	cin>>n;;
+//	cin>>key;
+//	int a[n];
+//	for(int i=0;i<n;i++)
+//	{
+//		cin>>a[i];
+//	}
+//	cout<<lastocu(a,key,n);
+//}
+
+
+
+
+//bubble sort
+//for pass 1 the large element in array goes to last
+//similarily pass2 thr second large goes to last-1
+//#include<bits/stdc++.h>
+//using namespace std;
+//void Bubblesort(int i,int *a,int n)
+//{
+//	if(n==1)
+//	{
+//		return ;
+//	}
+//	if(i==n-1)
+//	{
+//		Bubblesort(0,a,n-1);
+//		return ;
+//	}
+//	if(a[i]>a[i+1])
+//	{
+//		swap(a[i],a[i+1]);
+//	}
+//	Bubblesort(i+1,a,n);
+//	return ;
+//}
+//int main()
+//{
+//	int n;
+//	cin>>n;
+//	int a[n];
+//	for(int i=0;i<n;i++)
+//	{
+//		cin>>a[i];
+//	}
+//	Bubblesort(0,a,n);
+//	for(int i=0;i<n;i++)
+//	{
+//		cout<<a[i];
+//	}
+//}
+//
+
+//Merge sort   divide and conquer
+#include<bits/stdc++.h>
+using namespace std;
+void merge(int * a,int low,int mid,int high)
+{
+	int i=low;
+	int j=mid+1;
+	int k=low;
+	int temp[high+1];
+	while(i<=mid and j<=high)
+	{
+		if(a[i]<a[j])
+		{
+			temp[k++]=a[i++];
+		}
+		else
+		{
+			temp[k++]=a[j++];
+		}
+	}
+	while(i<=mid)
+	{
+		temp[k++]=a[i++];
+	}
+	while(j<=high)
+	{
+		temp[k++]=a[j++];
+	}
+	for(int i=low;i<=high;i++)
+	{
+		a[i]=temp[i];
+	}
+}
+void Mergesort(int *a,int low,int high)
+{
+	if(low>=high)
+	{
+		return ;
+	}
+	int mid=(low+high)/2;
+	Mergesort(a,low,mid);
+	Mergesort(a,mid+1,high);
+	merge(a,low,mid,high);
+	
+}
+int main()
+{
+	int n;
+	cin>>n;
+	int a[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	Mergesort(a,0,n-1);
+	for(int i=0;i<n;i++)
+	{
+		cout<<a[i];
+	}
+}
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
