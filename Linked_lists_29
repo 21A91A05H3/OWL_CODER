@@ -1,0 +1,45 @@
+//reverse a linked list
+ListNode* reverseList(ListNode* head) {
+        ListNode* p=NULL;
+        ListNode* c=NULL;
+        ListNode* temp=head;
+        while(temp)
+        {
+            c=temp->next;
+            temp->next=p;
+            p=temp;
+            temp=c;
+        }
+        return p;
+        
+    }
+
+
+//detect loop in linked list
+bool detectLoop(Node* head)
+    {
+        // your code here
+        int c=0;
+        Node *temp=head;
+        while(temp)
+        {
+            temp->data=-1;
+            temp=temp->next;
+            if(temp)
+            {
+                if(temp->data==-1)
+                {
+                    c=1;
+                    break;
+                }
+            }
+        }
+        if(c==1)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
