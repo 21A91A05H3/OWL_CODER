@@ -1,0 +1,55 @@
+//tower of hannoi
+ void MoveDisk(int N,int scr,int help,int dcs,int &cnt)
+    {
+        if(N>0)
+        {
+            MoveDisk(N-1,scr,dcs,help,cnt);
+            cout<<"move disk "<< N <<" from rod "<<scr<<" to rod "<< dcs << endl;
+            
+            cnt++;
+            MoveDisk(N-1,help,scr,dcs,cnt);
+            
+        }
+    }
+    long long toh(int N, int from, int to, int aux) {
+        // Your code here
+        int scr=from;
+        int dcs=to;
+        int help=aux;
+        int cnt=0;
+        int *ptr=&cnt;
+        int disk=1;
+        MoveDisk(N,scr,help,dcs,cnt);
+        return cnt;
+    }
+
+//letter combinations a phone number
+void Fun(int i,int j,string &digits,char *ans,vector<string>&res,char keypad[][10])
+    {
+        if(digits[i]=='\0')
+        {
+            ans[j]='\0';
+            if(ans[0]!='\0')
+            {
+                res.push_back(ans);
+            }
+            return;
+        }
+        int digit=digits[i]-'0';
+        if(digit==0 || digit==1)
+        {
+            Fun(i+1,j,digits,ans,res,keypad);
+        }
+        for(int k=0;keypad[digit][k]!='\0';k++)
+        {
+            ans[j]=keypad[digit][k];
+            Fun(i+1,j+1,digits,ans,res,keypad);
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        char keypad[][10]={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        vector<string>res;
+        char ans[100];
+        Fun(0,0,digits,ans,res,keypad);
+        return res;
+    }
