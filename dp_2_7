@@ -1,0 +1,147 @@
+/
+//#include<bits/stdc++.h>
+//using namespace std;
+//int dp[1000000];
+//long long Fun(int a[],int n,int k)
+//{
+//	if(k<=0)return 0;
+//	if(dp[k]!=-1)return dp[k];
+//	long long int ans=INT_MAX;
+//	for(int i=0;i<n;i++)
+//	{
+//		if(a[i]<=k)
+//		{
+//			ans=min(ans,1+Fun(a,n,(k-a[i])));
+//		}
+//	}
+//	return dp[k]=ans;
+//}
+//int main()
+//{
+//	int n,k;
+//	cin>>n>>k;
+//	int a[n];
+//	memset(dp,-1,sizeof(dp));
+//	for(int i=0;i<n;i++)
+//	{
+//		cin>>a[i];
+//	}
+//	if(k==0){
+//		cout<<0;
+//	}
+//	else if(n==1 and (k%a[0]!=0)){
+//		cout<<-1;
+//		
+//	}
+//	else{
+//		int h=Fun(a,n,k);
+//		if(h==INT_MAX){
+//			cout<<'-1';
+//		}
+//		else{
+//			cout<<h;
+//		}
+//	}
+//}
+//
+
+//-----------------------------
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define ll long long
+//int dp[100000][100000];
+//ll Fun(int i,int j,ll a[],ll n)
+//{
+//	if(i==j)
+//	{
+//		return (n-(j-i))*a[i];
+//	}
+//	if(dp[i][j]!=-1)return dp[i][j];
+//	ll left=(n-(j-i))*a[i]+Fun(i+1,j,a,n);
+//	ll right=(n-(j-i))*a[j]+Fun(i,j-1,a,n);
+//	return dp[i][j]=max(left,right);
+//}
+//int main()
+//{
+//	ll n;
+//	cin>>n;
+//	ll a[n];
+//	for(int i=0;i<n;i++)
+//	{
+//		cin>>a[i];
+//	}
+//	int i=0,j=n-1;
+//	memset(dp,0,sizeof(dp));
+//	cout<<Fun(0,n-1,a,n);
+//}
+//o/p:
+//3 - 2 5 3
+//23
+
+//------------------------------------
+//#include<bits/stdc++.h>
+//using namespace std;
+//#define ll long long
+//int dp[100000][100000];
+//ll Fun(int i,int j,ll a[],ll n)
+//{
+//	if(i==j)
+//	{
+//		return (n-(j-i))*a[i];
+//	}
+//	if(dp[i][j]!=-1)return dp[i][j];
+//	ll left=(n-(j-i))*a[i]+Fun(i+1,j,a,n);
+//	ll right=(n-(j-i))*a[j]+Fun(i,j-1,a,n);
+//	return dp[i][j]=max(left,right);
+//}
+//int main()
+//{
+//	ll n;
+//	cin>>n;
+//	ll a[n];
+//	for(int i=0;i<n;i++)
+//	{
+//		cin>>a[i];
+//	}
+//	vector<vector<ll>>dp(n,vector<ll>(n,0));
+//	//base case
+//	for(int i=0;i<n;i++)
+//	{
+//		dp[i][i]=n*a[i];
+//	}
+//	for(int k=1;k<n;k++)
+//	{
+//		int i=0,j=k;
+//		dp[i][j]=max(dp(i+1,j),dp(i,j-1));
+//	}
+//	cout<<dp[0][n];
+//}
+
+//6-2-2024
+//#include<bits/stdc++.h>
+//using namespace std;
+//int Fun(int a[],int n)
+//{
+//	if(n==0)return 0;
+//	
+//	int mainans=INT_MIN;
+//	for(int i=0;i<n;i++)
+//	{
+//		int len=i+1;
+//		int subprob=a[i]+Fun(a,n-len);
+//		mainans=max(subprob,mainans);
+//	}
+//	return mainans;
+//}
+//int main()
+//{
+//	int n;
+//	cin>>n;
+//	int a[n];
+//	for(int i=0;i<n;i++)
+//	{
+//		cin>>a[i];
+//	}
+//	cout<<Fun(a,n);
+//}
+
