@@ -65,77 +65,54 @@ int main(){
 
 //without using dps
 #include<bits/stdc++.h>
-#define ll long long
-#define pb push_back
+
 using namespace std;
+long long a,b,d,k;
 vector<int>nums;
-ll a,b,k,d;
-ll Fun(ll pos,ll flag,ll cnt)
-{
+
+long long fun(long long pos, long long cnt,long long flag){
 	if(cnt>k)return 0;
-	if(pos>=nums.size())
-	{
-		if(cnt==k)return 1;
+	if(pos==nums.size()){
+		if(cnt==k) return 1;
 		else return 0;
 	}
-	int LIM;
-	if(flag==0)
-	{
-		LIM=nums[pos];
+	int limit;
+	if(flag==0){
+		limit=nums[pos];
 	}
-	else
-	{
-		LIM=9;
+	else{
+		limit=9;
 	}
-	ll ans=0;
-	for(int i=0;i<=LIM;i++)
-	{
-		int nf=flag;
-		ll ncnt=cnt;
-		if(flag==0 and i<LIM)nf=1;
-		if(i==d)ncnt++;
-		if(ncnt<=k)ans+=Fun(pos+1,nf,cnt);
+	long long ans=0;
+	for(int i=0;i<=limit;i++){
+		int newflag=flag;
+		int ncnt=cnt;
+		if(i==d) ncnt++;
+		if(flag==0 and i<limit ) newflag=1;
+		if(ncnt<=k) ans+=fun(pos+1,ncnt,newflag);
 	}
 	return ans;
 }
-int Solve(ll b)
-{
-	while(b)
-	{
-		nums.pb(b%10);
+
+long long solve(long long b){
+	nums.clear();
+	while(b){
+		nums.push_back(b%10);
 		b/=10;
 	}
 	reverse(nums.begin(),nums.end());
-	ll res=Fun(0,0,0);
-	nums.clear();
+	long long res=fun(0,0,0);
+
 	return res;
 }
-int main()
-{
-	ll a,b,k,d;
+
+int main(){
+	
 	cin>>a>>b>>k>>d;
-	ll ans1=Solve(a);
-	ll ans2=Solve(b);
-	cout<<ans2-ans1<<endl;
+	long long ans1=solve(a-1);
+	long long ans2=solve(b);
+	cout<<ans2-ans1;
 }
-//4 --10,23,1,2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
