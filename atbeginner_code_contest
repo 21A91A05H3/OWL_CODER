@@ -1,0 +1,25 @@
+//1 st answer
+//#include<bits/stdc++.h>
+//using namespace std;
+//int main()
+//{
+//	int f,l,d;
+//	cin>>f>>l>>d;
+//	vector<int>v;
+//	v.push_back(f);
+//	int f1=f;
+//	int f2=f;
+//	while(f2!=l)
+//	{
+//		f1+=d;
+//		v.push_back(f1);
+//		f2=f1;
+//	}
+//	for(int i=0;i<v.size();i++)
+//	{
+//		cout<<v[i]<<endl;
+//	}
+//}
+//
+//
+//
