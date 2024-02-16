@@ -1,0 +1,76 @@
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+// void BFS(int node,vector<int>adj[],vector<bool>visited)
+// {
+//     queue<int>q;
+//     q.push(node);
+//     visited[node]=true;
+//     while(!q.empty()){
+//         node=q.front();
+//         cout<<node<<" ";
+//         q.pop();
+//         for(auto nbr: adj[node])
+//         {
+//             if(visited[nbr]==false)
+//             {
+//                 q.push(nbr);
+//                 visited[nbr]=true;
+//             }
+//         }
+//     }
+// }
+void Toposort(char Node,map<char,vector<char>>&adj,
+vector<bool>&visited,stack<char>&st)
+{
+    visited[Node-'A']=true;
+    for(auto nbr:adj[Node])
+    {
+        if(!visited[nbr-'A'])
+        {
+            Toposort(nbr,adj,visited,st);
+        }
+    }
+    st.push(Node);
+}
+int main()
+{
+    int n,e;
+    cin>>n>>e;
+    map<char,vector<char>>adj;
+    vector<bool>visited(n,false);
+    char u,v;
+    for(int i=0;i<e;i++)
+    {
+        cin>>u>>v;
+        adj[u].push_back(v);
+    }
+    stack<char>st;
+    for(char i='A';i<='A'+n;i++)
+    {
+        if(!visited[i-'A']) Toposort(i,adj,visited,st);
+    }
+    while(!st.empty())
+    {
+        cout<<st.top()<<" ";
+        st.pop();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
