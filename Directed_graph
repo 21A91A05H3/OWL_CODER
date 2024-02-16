@@ -1,0 +1,92 @@
+////////////directed graph using dfs
+// #include<bits/stdc++.h>
+// using namespace std;
+// void DFS(int node,vector<int>adj[],vector<bool>&visited)
+// {
+//     visited[node]=adj[];
+//     for(auto nbr:adj[node])
+//     {
+//         if(!visited[nbr])
+//         {
+//             DFS(nbr,adj,visited);
+//         }
+//     }
+// }
+// int main()
+// {
+//     int n,e;
+//     cin>>n>>e;
+//     vector<int>adj[n+1];
+//     for(int i=0;i<e;i++)
+//     {
+//         int u,v;
+//         cin>>u>>v;
+//         adj[u].push_back(v);
+//     }
+        vector<bool>visited(n+1,false);
+      // for(int i=1;i<=n;i++)
+// {
+//     if(!visited[i]) DFS(1,adj,visited);
+// }
+// }
+
+
+
+/////directed graph using bfs
+
+#include<bits/stdc++.h>
+using namespace std;
+void BFS(int node,vector<int>adj[],vector<bool>visited)
+{
+    queue<int>q;
+    q.push(node);
+    visited[node]=true;
+    while(!q.empty()){
+        node=q.front();
+        cout<<node<<" ";
+        q.pop();
+        for(auto nbr: adj[node])
+        {
+            if(visited[nbr]==false)
+            {
+                q.push(nbr);
+                visited[nbr]=true;
+            }
+        }
+    }
+}
+int main()
+{
+    int n,e;
+    cin>>n>>e;
+    vector<int>adj[n+1];
+    for(int i=0;i<e;i++)
+    {
+        int u,v;
+        cin>>u>>v;
+        adj[u].push_back(v);
+    }
+    vector<bool>visited(n+1,false);
+    for(int i=1;i<=n;i++)
+    {
+        if(!visited[i]) BFS(i,adj,visited);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
