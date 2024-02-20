@@ -1,0 +1,47 @@
+//disjoint.union set by rank
+
+#include<bits/stdc++.h>
+using namespace std;
+int FindParent(int a,vector<int>&Parent)
+{
+    if(Parent[a]==a) return a;
+    return Parent[a]=FindParent(a,Parent);
+}
+void Union(int x,int y,vector<int>&Parent,vector<int>&Rank)
+{
+    int px=FindParent(x,Parent);
+    int py=FindParent(y,Parent);
+    if(Rank[px]==Rank[py])
+    {
+        Parent[py]=px;
+        Rank[x]++;
+    }
+    else if(Rank[py]<Rank[px])
+    {
+        Parent[py]=py;
+    }
+    else
+    {
+        Parent[px]=py;
+    }
+}
+int main()
+{
+    int n=5;
+    vector<int>Parent(n+1);
+    vector<int>Rank(n+1,0);
+    for(int i=1;i<=n;i++)
+    {
+        Parent[i]=1;
+    }
+    Union(1,2,Parent,Rank);
+    Union(3,4,Parent,Rank);
+    if(FindParent(1,Parent)==FindParent(4,Parent))
+    {
+        cout<<"same";
+    }
+    else{
+        cout<<"not same";
+    }
+}
+
